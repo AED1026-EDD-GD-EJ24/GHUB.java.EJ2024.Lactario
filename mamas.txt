@@ -1,0 +1,5 @@
+"001","Ana Lopez","20","01/01/2004",null
+"002","Cecilia Buelna","31","24/03/1993",null
+"003","Bertha Armenta","18","06/05/2006",null
+"004","Patricia Reyes","35","30/01/1989",null
+"005","Zulema Sanchez","25","30/04/1999",null
