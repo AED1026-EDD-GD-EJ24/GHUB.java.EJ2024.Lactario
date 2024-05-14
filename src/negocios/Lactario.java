@@ -19,10 +19,14 @@ import datos.Hijo;
 import datos.LectorArchivo;
 
 public class Lactario {
+
+	//cree una listadoblemente enlazada parametrizada que contenga objetos hijos y nómbrela ListaHijos
 	
-	private ListaDoblementeEnlazada<Hijo> listaHijos;
-	private ArbolAVL abo = new ArbolAVL();
-	private Hashtable<String,Mama> ht;
+	//cree un arbol AVL y nómbrelo abo
+	
+	//cree una Hastable formada por un String y objetos de la clase Mama. El string deberá guardar los id de las madres
+	// y nómbrela ht
+	
 	
 	public Lactario() {
 		
@@ -30,89 +34,87 @@ public class Lactario {
 		listaHijos = new ListaDoblementeEnlazada<Hijo>();
 		
 		LectorArchivo lector = new LectorArchivo();
-        lector.leerArchivo(abo, listaHijos, ht );
+		//invoque al método leerArchivo de la clase LectorArchivo
+        
 		
 	}
 	
 	public ArbolAVL getAbo() {
-		return abo;
+		//retorne el árbol
 	}
 
 	public boolean agregar_mama(String id, String nombre,
 			   int edad, Fecha fecha, ListaDoblementeEnlazada<Hijo> hijos) throws Exception {
 		Mama mama =null;
-		mama = buscarMama(id);
+		//invoque al método buscarMama
+		mama = //
 		if(mama == null){
 			//Agrega un registro mujer al árbol
-			abo.insertar(new Mama(id, nombre,edad,fecha,hijos));
+			//inserte a la mama en el árbol
+			
+
 			//Agrega un registro mujer a la Tabla Hash
-			ht.put(id, new Mama(id,nombre,edad,fecha,hijos));
-			return true;
+			//inserte el registro en la hash table
+			 
+			//retorne verdadero
 
 		}
-		return false;
+		//retorne falso
 	
 	}
 
 	public Mama buscarMama(String id){
-		return ht.get(id);
+		//Busque el id de la mama en la hashtable y retorne el objeto mama
+		
 		
 	}
 	public Hijo buscaHijo(String id )throws PosicionIlegalException {
-		for (int i=0; i<listaHijos.getTamanio(); i++){
-			if (listaHijos.getValor(i).getId().equals(id)){
-				return listaHijos.getValor(i);
-			}
-		}
-		return null;
+		//busque al hijo en la lista listahijos por id y retorne el objeto buscado, 
+		//si no lo encuentra regreso null
+		
 		
 	}
 
 	public boolean agregar_hijos(String Id, String nombre, int edadMeses, int edadDias, Fecha fecha, String idMama, String nombreMama	) {
-		listaHijos.agregar(new Hijo(Id,nombre,edadMeses, edadDias,fecha, idMama));
-		return true;
+		//agrege un hijo en la listaHijos
+		//retorne verdadero
+		
 	}
 
 	//filtra los hijos por el id de la madre
 	public ListaDoblementeEnlazada<Hijo> getHijos(String idMadre) throws PosicionIlegalException {
 		ListaDoblementeEnlazada<Hijo> hijos = new ListaDoblementeEnlazada<Hijo>();
+		//busque las coinsidencias en la listahijos y creo otra lista de nombre hijos, que contenga
+		//solamente los objetos hijo del idMadre
 		hijos.limpiar();
-		for(int i=0; i<listaHijos.getTamanio(); i++){
-			if(listaHijos.getValor(i).getIdMama().equals(idMadre)){
-				hijos.agregar(listaHijos.getValor(i));
-			}
-		}
-		return hijos;
+
+		//retorne la lista hijos
+
+		
 	}
 
 	//devuelve una lista de mamas por una parte del nombre a partir de la hashTable
 	public ListaDoblementeEnlazada<Mama> buscarMamaPorNombreParcial(String nombre) throws Exception{
-		ListaDoblementeEnlazada<Mama> mamas = new ListaDoblementeEnlazada<Mama>();
+		//cree un lista de tipo ListaDoblementeEnlazada que contengo objetos Mama
+
+		
+
 		mamas.limpiar();
-		String aux;
-		Enumeration<String>  keys = ht.keys();
-		while(keys.hasMoreElements()){
-			aux = keys.nextElement();
-			Mama mama = ht.get(aux);
-			if (mama.getNombre().toLowerCase().contains(nombre.toLowerCase())) {
 
-			   mamas.agregar(mama);
-			}
-
-
-			
-		}
+		//busque las conisidencias en la hashtable y agrega a la lista
 		
 		
-		return mamas;
+		//retorma la lista mamas que contendrá una lista de mamas en cuyo nombre aparezcan las coinsidencias de nombre
 	}
 
 	//elimina del árbol AVL y de la tabla Hash
 	public boolean eliminar_mama(String id) throws Exception{
 		Mama mama= buscarMama(id);
 		if(mama != null){
-			abo.eliminar(mama);
-			ht.remove(id);
+			//elimine al objeto del árbol
+			
+			//elimine el objeto de la hashtable
+			
 			
 			return true;
 		}else{	
@@ -123,23 +125,21 @@ public class Lactario {
 
 	//elimina de la lista de hijos
 	public boolean eliminar_hijo(String id) throws PosicionIlegalException{
-		for(int i=0; i<listaHijos.getTamanio(); i++){
-			if(listaHijos.getValor(i).getId().equals(id)){
-				listaHijos.remover(i);
-				return true;
-			}
-		}
-		return false;
+		//elimine de la lista listaHijos al hijo id
+		//retorne verdadero si lo pudo eliminar
+		//retorne falso si no lo encontró
+		
 
 	}
 
 	//elimina de la lista de hijos por el id de la madre
 	public boolean eliminar_hijo_mama(String idMama) throws PosicionIlegalException{
 		int eliminados =0;
+		//complete el códifo dentro del for para que elimien de la listaHijos a los que tengan
+		//como el idMama
+		//cuente cuántos son
 		for(int i=0; i<listaHijos.getTamanio(); i++){
-			if(listaHijos.getValor(i).getIdMama().equals(idMama)){
-				listaHijos.remover(i);
-				eliminados++;
+			
 				
 			}
 		}
@@ -156,12 +156,7 @@ public class Lactario {
 			int edad, Fecha fecha) throws Exception{
 		//Coloque aquí el código para que busque el objeto Mujer
 		// y regrese verdadero si lo encuentra y falso si no
-		Nodo n = abo.buscar(new Mama(id, nombre, edad,fecha));
-		if (n != null) {
-			return (Mama) n.getValor();
-		} else {
-			return null;
-		}
+		
 	}
 
 	

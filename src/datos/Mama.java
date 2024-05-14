@@ -5,8 +5,8 @@ package datos;
 import listaDoble.ListaDoblementeEnlazada;
 import arbolAVL.Comparable;
 
-
-public class Mama implements Comparable{
+// implemente la clase Mama como Comparable
+public class Mama {
 	
 	
 	private String id;
@@ -65,24 +65,7 @@ public class Mama implements Comparable{
 	public void setHijos(ListaDoblementeEnlazada<Hijo> hijos) {
 		this.hijos = hijos;
 	}
-	public boolean esMenor(Object q) {
-		Mama obj = (Mama)q;
-		boolean valor =this.id.compareTo(obj.getId())<0?true:false;
-		
-		return valor;	
-	}
-	public boolean esMayor(Object q) {
-        Mama obj = (Mama)q;	
-		boolean valor =this.id.compareTo(obj.getId())>0?true:false;
-		return valor;
-	}
-	public boolean esIgual(Object q) {
-		Mama obj = (Mama)q;	
-		boolean valor =this.id.compareTo(obj.getId())==0?true:false;
-		return valor;
-		
-	}
-		
+	
 
 	@Override
 	public String toString() {

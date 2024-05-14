@@ -1,6 +1,9 @@
 package arbolAVL;
-import pilas.Pila;
-import colas.Cola;
+//importe la clase Pila
+
+//importe la clase Cola
+
+//IMPORTE la clase NODO necesario para un ARBOL BINARIO BALANCEADO
 /**
  * Representa un árbol binario ordenado. Tiene las operaciones
  * básicas: insertar, eliminar, buscar y recorridos
@@ -258,9 +261,7 @@ import colas.Cola;
 	 * @throws Exception
 	 */
 	public void insertar(Object valor) throws Exception{
-		Comparable dato = (Comparable) valor;
-		Logical h = new Logical(false);//intercambio un valor booleano
-		raiz = insertarAVL(raiz,dato,h);
+		//complete el código faltante
 	}
 	/**
 	 * Método Recursivo
@@ -271,66 +272,7 @@ import colas.Cola;
 	 * @throws Exception
 	 */
 	private Nodo insertarAVL(Nodo raiz, Comparable dt, Logical h) throws Exception{
-		Nodo n1;
-		if (raiz == null) {
-			//Caso Base, termina la recursividad
-			raiz = new Nodo(dt);
-			h.setLogical(true);
-		}
-		else if(dt.esMenor(raiz.getValor())) {
-				Nodo iz = insertarAVL(raiz.getIzquierdo(),dt,h);
-				raiz.setIzquierdo(iz);
-				//Regreso por los nodos del camino de búsqueda
-				if(h.booleanValue()) {
-					//decrementa el fe por aumentar la altura de rama izquierda
-					switch(raiz.getFe()) {
-					case 1:
-						raiz.setFe(0);
-						h.setLogical(false);
-						break;
-					case 0:
-						raiz.setFe(-1);
-						break;
-					case -1: //Aplicar la rotación a la izquierda
-						n1=(Nodo)raiz.getIzquierdo();
-						if(n1.getFe()==-1)
-							raiz=rotacionII(raiz,n1);
-						else
-							raiz=rotacionID(raiz,n1);
-						h.setLogical(false);
-						
-					}
-				}
-			}
-		    else if(dt.esMayor(raiz.getValor())) {
-				Nodo dr = insertarAVL(raiz.getDerecho(),dt,h);
-				raiz.setDerecho(dr);
-				//Regreso por los nodos del camino de búsqueda
-				if(h.booleanValue()) {
-					//decrementa el fe por aumentar la altura de rama derecha
-					switch(raiz.getFe()) {
-					case 1: //Aplicar rotación a la derecha
-						n1=(Nodo)raiz.getDerecho();
-						if(n1.getFe()==+1)
-							raiz=rotacionDD(raiz,n1);
-						else
-							raiz=rotacionDI(raiz,n1);
-						h.setLogical(false);
-						break;							
-					case 0:
-						raiz.setFe(+1);
-						break;
-					case -1: 
-						raiz.setFe(0);
-						h.setLogical(false);							
-							
-					}
-				}
-			}
-		    else 
-				//Dato duplicado
-					throw new Exception("Nodo Duplicado");
-		return raiz;
+		//complete el código faltante
 	}
 	
 	/**
@@ -387,10 +329,7 @@ import colas.Cola;
 	 * @throws Exception
 	 */
 	public void eliminar(Object valor) throws Exception{
-		Comparable dato;
-		dato = (Comparable) valor;
-		Logical flag = new Logical(false);
-		raiz = borrarAVL(raiz,dato,flag);
+		//complete el código faltante
 		
 	}
 	/**
@@ -404,61 +343,9 @@ import colas.Cola;
 	
 	public Nodo borrarAVL(Nodo r, Comparable clave, Logical cambioAltura) 
 			throws Exception{
-		if(r==null) {
-			throw new Exception("Nodo no encontrado");
-		}
-		else if(clave.esMenor(r.getValor())) {
-			Nodo iz;
-			iz = borrarAVL((Nodo)r.getIzquierdo(),clave,cambioAltura);
-			r.setIzquierdo(iz);
-			if(cambioAltura.booleanValue())
-					r=equilibrar1(r,cambioAltura);
-			
-		}
-		else if(clave.esMayor(r.getValor())) {
-			Nodo dr;
-			dr = borrarAVL((Nodo)r.getDerecho(),clave,cambioAltura);
-			r.setDerecho(dr);
-			if(cambioAltura.booleanValue())
-					r=equilibrar2(r,cambioAltura);
-			
-		}
-		else //Nodo encontrado
-		{
-			Nodo q;
-			q=r; //Nodo a quitar del arbol
-			if(q.getIzquierdo()==null) {
-				r=(Nodo) q.getDerecho();
-				cambioAltura.setLogical(true);
-			}
-			else if(q.getDerecho()==null) {
-				r=(Nodo) q.getIzquierdo();
-				cambioAltura.setLogical(true);
-			
-			}
-			else {
-				//Tiene rama izquierda y rama derecha
-				
-				Nodo iz=null;
-				
-				
-				//if (((Nodo)r.getIzquierdo()).getDerecho()!=null) {
-					
-					
-				   iz = reemplazar(r,(Nodo)r.getIzquierdo(), cambioAltura);
-				   
-				  
-				//}
-				
-					
-				//System.out.println("Ya encontre el reemplazo"+iz.getValor());
-				r.setIzquierdo(iz);
-				if(cambioAltura.booleanValue())
-					r=equilibrar1(r,cambioAltura);
-			}
-			q=null;
-		}
-		return r;
+
+		//complete el código faltante
+		
 	}
 		
 	/**
